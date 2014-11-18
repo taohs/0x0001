@@ -1,0 +1,88 @@
+/*---------------------------------------------------------------------
+ |-Version------ V1.0
+ |-Description-- hmw01
+ |-Author------- liyf
+ |-E-mail------- liyf@72ec.com
+ |-CopyRight---- Powered by gsw100 Inc. All rights reserved.
+ |-Modifies----- 2011-11-27
+ ----------------------------------------------------------------------*/
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+table{
+    width: 100%;
+}
+
+table, table th, table td{
+    border: 1px solid;
+    border-collapse:collapse;
+}
+
+body{
+    background: url("../img/login_bg.png") repeat scroll left 0 transparent;
+}
+.maindiv{
+    width:960px;
+    height: 646px;
+    margin: 0 auto;
+    position: relative;
+    background: url("../img/login.png") repeat scroll left 0 transparent;
+}
+.maindiv ul{
+    width:237px;
+    height: 126px;
+    position: relative;
+    top: 265px;
+    left:364px;
+}
+.maindiv ul li{
+    width:100%;
+    float: left;
+    height: 26px;
+    line-height:26px;
+    margin-bottom: 15px;
+}
+.maindiv ul li label{
+    width:53px;
+    float: left;
+    text-align: right;
+}
+.maindiv ul li input{
+    border: none;
+}
+.maindiv ul li input.namelogin{
+    width:166px;
+    height: 26px;
+    text-indent: 30px;
+    background: url("../img/login_input.png") repeat scroll -2px -2px transparent;
+}
+.maindiv ul li input.password{
+    width:166px;
+    height: 26px;
+    text-indent: 30px;
+    background: url("../img/login_input.png") repeat scroll -2px -41px transparent;
+}
+.maindiv ul li button.login{
+    width:62px;
+    height: 29px;
+    margin-left: 54px;
+    _margin-left: 27px;
+    cursor: pointer;
+    margin-right: 15px;
+    text-indent: 29px;
+    background: url("../img/login_input.png") repeat scroll -2px -86px transparent;
+}
+.maindiv ul li input.rely{
+    width:62px;
+    height: 29px;
+    cursor: pointer;
+    text-indent: 29px;
+    background: url("../img/login_input.png") repeat scroll -69px -86px transparent;
+}

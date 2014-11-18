@@ -1,0 +1,378 @@
+/* CSS Document */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, a, abbr, cite, dfn, em, img, ins, s, strong, b, u, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, section, summary, time, mark, audio, video, input {margin: 0;padding: 0;border: 0;}
+ul, ol {list-style: none;list-style-image: none;list-style-position: outside;}
+a {outline: none;text-decoration: none;}
+a:hover {text-decoration: none;}
+body {font-family: Microsoft YaHei, STHeiti;font-size: 12px;}
+table {border-collapse:collapse;border-spacing:separate;}
+.fl {float: left;}
+.fr {float: right;}
+.clear {zoom: 1;}
+.clear:after {display: block;clear: both;content: "";visibility: hidden;height: 0;}
+/*login.html*/
+.login {
+	margin-top: 258px;
+}
+.login ul {
+	width: 340px;
+	background: #FFF;
+	border-radius: 18px;
+	padding: 30px 50px 50px 50px;
+	margin: 0 auto;
+}
+.login ul li {
+	margin-top: 20px;
+	position: relative;
+}
+.login ul li img {
+	width: 140px;
+	height: 42px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+#loginU, #loginP, #loginV {
+	color: #888;
+	width: 298px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	border: 1px solid #a1bdd5;
+	background: #ecf5fa url(../images/loginInput.png) no-repeat;
+	background-position: 6px 0;
+	padding-left: 40px;
+}
+#loginP {
+	background-position: 6px -38px;
+}
+#loginV {
+	background-position: 6px -75px;
+	width: 140px;
+}
+#loginB {
+	background: #1C77AC;
+	font-size: 16px;
+	color: #FFF;
+	cursor: pointer;
+	border: 1px solid #1C77AC;
+	padding: 10px 0;
+	width: 100%;
+}
+/* top.html */
+.top {
+	width: 100%;
+	height: 98px;
+	overflow: hidden;
+}
+.top .logo {
+	float: left;
+	width: 188px;
+	height: 98px;
+	background: url(../images/logo.png) no-repeat;
+}
+.top .nav {
+	float: left;
+	height: 98px;
+	text-align: center;
+}
+.top .nav span {
+	display: block;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	border: 1px solid #1C77AC;
+	padding: 10px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.top .nav span:hover, .top .nav .active {
+	border: 1px solid #055584;
+	background: #055584;
+}
+.top .nav span img {
+	width: 40px;
+	height: 40px;
+}
+.top .nav span h3 {
+	color: #FFF;
+	font-weight: normal;
+	font-size: 12px;
+}
+.top .logot {
+	float: right;
+	height: 98px;
+	line-height: 98px;
+	margin-right: 20px;
+}
+.top .logot i {
+	color: #FFF;
+	font-size: 14px;
+	margin-right: 20px;
+}
+.top .logot a {
+	padding: 10px;
+	background: #055584;
+	color: #F8F8F8;
+	border-radius: 10px;
+}
+.top .logot a:hover {
+	background: #014167;
+}
+/* left.html */
+.left {
+	width: 187px;
+	height: 100%;
+	border-right: 1px solid #DDD;
+	overflow: hidden;
+}
+.left .nav {
+	width: 99.9%;
+	text-align: center;
+	overflow: hidden;
+}
+.left .nav ul li {
+	line-height: 35px;
+}
+.left .nav ul li a {
+	color: #888;
+	display: block;
+	border-bottom: 1px solid #DDD;
+	background: url(../images/left_nav_bg1.png);
+}
+.left .nav ul li a:hover{
+	color: #222;
+	background: url(../images/left_nav_bg2.png);
+}
+.left .nav .active a {
+	color: #1c77ac;
+	background: url(../images/left_nav_bg2.png);
+	font-weight: bold;
+}
+.left .nav .active a:hover {
+	color: #1c77ac;
+}
+/* right.html */
+.breadCrumb {
+	width: 100%;
+	line-height: 35px;
+	border-bottom: 1px solid #DDD;
+	background: url(../images/left_nav_bg2.png);
+	text-indent: 20px;
+	color: #888;
+}
+.right {
+	padding:0 20px;
+}
+.right .tool,.right .body,.right .page{
+	width: 100%;
+	margin-top: 20px;
+}
+.right .tool,.right .page{
+	line-height: 30px;
+	height: 32px;
+	position: relative;
+	color: #666;
+}
+.right .tool a,.right .tool span,.right .page a,.right .page span {
+	float: left;
+	display: block;
+	margin-right: 10px;
+	border:1px solid #DDD;
+	padding: 0 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	background: #F8F8F8;
+	color: #666;
+}
+.right .tool a img,.right .tool span img {
+	width: 14px;
+	height: 14px;
+	vertical-align:middle;
+	margin-right: 3px;
+}
+.right .page a {
+	background: #1c77ac;
+	border-color: #1c77ac;
+	color: #FFF;
+}
+.right .page a:hover {
+	background: #0a4b71;
+	border-color: #0a4b71;
+}
+.right .page span {
+	background: #FFF;
+	color: #CCC;
+	cursor: default;
+}
+.right .tool a:hover,.right .tool span:hover{
+	background: #F1F1F1;
+}
+.right .tool .search {
+	position: absolute;
+	height: 32px;
+	width: 270px;
+	top: 0;
+	right: 0;
+}
+.right .tool .search input {
+	width: 188px;
+	height: 30px;
+	border: 1px solid #DDD;
+	padding-left: 5px;
+	border-radius: 5px;
+	color: #888;
+	float: left;
+}
+.right .tool .search span {
+	float: right;
+	margin-right: 0;
+	margin-left: 10px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+.right .body .list {
+	width: 100%;
+	border: 1px solid #DDD;
+	text-align: center;
+}
+.right .body .list thead {
+}
+.right .body .list thead tr {
+	line-height: 35px;
+}
+.right .body .list thead tr th {
+	background: #F5F5F5;
+	border-left: 1px solid #DDD;
+}
+.right .body .list tbody {
+}
+.right .body .list tbody tr {
+	border-top: 1px solid #DDD;
+}
+.right .body .list tbody tr td {
+	border-left: 1px solid #DDD;
+	padding: 10px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+.right .body .addlist {
+	color: #888;
+}
+.right .body .addlist ul {
+	margin-top: 20px;
+}
+.right .body .addlist ul:first-child {
+	margin-top: 0;
+}
+.right .body .addlist ul li {
+	float: left;
+	line-height: 30px;
+	position: relative;
+}
+.right .body .addlist .a1 {
+	width: 100px;
+	height: 30px;
+}
+.right .body .addlist .a1 b {
+}
+.right .body .addlist .a1 span {
+	color: #FF0000;
+	font-weight: bold;
+	margin-right: 5px;
+}
+.right .body .addlist .a2 {
+	background: #FFF;
+}
+/*form*/
+.right .body .addlist .a2 .text,
+.right .body .addlist .a2 .file,
+.right .body .addlist .a2 .select,
+.right .body .addlist .a2 .textarea,
+.right .body .addlist .a2 .sbut,
+.right .body .addlist .a2 .rbut {
+	font-size: 12px;
+	font-family: Microsoft YaHei, STHeiti;
+	color: #555;
+}
+.right .body .addlist .a2 .text {
+	width: 550px;
+	height: 30px;
+	padding: 0;
+	padding-left: 10px;
+	border-radius: 5px;
+	border: 1px solid #DDD;
+}
+.right .body .addlist .a2 .fileBox{
+	display: block;
+	width: 220px;
+	overflow: hidden;
+	border: 1px solid #DDD;
+	border-radius: 5px;
+	position: relative;
+}
+.right .body .addlist .a2 .fileBox .fileView {
+	width: 100%;
+	color: #555;
+	line-height: 30px;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0 0 0 13px;
+	background: #F9F9F9;
+}
+.right .body .addlist .a2 .fileBox .file {
+	width: 300px;
+	height: 30px;
+	border: none;
+	opacity: 0;
+	cursor: pointer;
+}
+.right .body .addlist .a2 .selectBox {
+	display: block;
+	width: 220px;
+	overflow: hidden;
+	border: 1px solid #DDD;
+	border-radius: 5px;
+}
+.right .body .addlist .a2 .selectBox .select {
+	width: 240px;
+	height: 30px;
+	padding: 0 0 0 10px;
+	margin: 0;
+	border: 1px solid #FFF;
+	background: url(../images/select_arrow.png) no-repeat 185px 4px;
+}
+.right .body .addlist .a2 .selectBox .select:hover {
+	background: url(../images/select_arrow.png) no-repeat 185px -25px;
+}
+.right .body .addlist .a2 .textarea {
+	width: 700px;
+	height: 100px;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #DDD;
+}
+.right .body .addlist .a2 .sbut {
+	padding: 5px 20px;
+	border:1px solid #1c77ac;
+	background: #1c77ac;
+	color: #FFF;
+	border-radius: 5px;
+	margin-right: 20px;
+}
+.right .body .addlist .a2 .rbut {
+	padding: 5px 20px;
+	border:1px solid #888;
+	background: #888;
+	color: #FFF;
+	border-radius: 5px;
+	margin-right: 20px;
+}
