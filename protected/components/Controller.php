@@ -24,4 +24,16 @@ class Controller extends CController
 
     public $controlName ='用户管理';
     public $actionName  ='用户列表';
+    protected $_user;
+
+
+    function getUserInfo(){
+        $cacheKey = 'userInfo_id_'.Yii::app()->user->id;
+        $cacheValue = Yii::app()->cache->get($cacheKey);
+        if(!$cacheValue){
+            $cacheValue = User::model()->findByPk(Yii::app()->user->id);
+            Yii::app()->cache->set($cacheKey,$cacheValue,600);
+        }
+        return $cacheValue;
+    }
 }
