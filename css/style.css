@@ -265,6 +265,9 @@ table {border-collapse:collapse;border-spacing:separate;}
 .right .body .addlist {
 	color: #888;
 }
+.right .body .addlist .clear {
+    margin-top: 20px;
+}
 .right .body .addlist ul {
 	margin-top: 20px;
 }
