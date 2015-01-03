@@ -9,6 +9,8 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
     'language'=>'zh_cn',
+    'defaultController'=>'login/index',
+    //'defaultAction'=>'index',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -36,7 +38,7 @@ return array(
 
         'cache'=>array(
             'class'=>'system.caching.CFileCache',
-            'cachePath'=>'/Users/taohaisong/Projects/Php/cache'
+            //'cachePath'=>'/Users/taohaisong/Projects/Php/cache'
         ),
         'cachedd'=>array(
             'class'=>'system.caching.CFileCache'

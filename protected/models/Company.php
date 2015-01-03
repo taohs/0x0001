@@ -108,4 +108,12 @@ class Company extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function beforeSave(){
+        if($this->getIsNewRecord()){
+            $this->create_time = date('Y-m-d H:i:s',time());
+        }
+        $this->update_time = date('Y-m-d H:i:s',time());
+        return true;
+    }
 }

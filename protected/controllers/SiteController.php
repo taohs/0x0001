@@ -2,6 +2,17 @@
 
 class SiteController extends Controller
 {
+
+    function init(){
+        parent::init();
+        if(Yii::app()->user->isGuest){
+            $this->redirect('/login');
+        }elseif(Yii::app()->user->role!=1){
+            $this->redirect('/member');
+        }
+        $this->_user = $this->getUserInfo();
+    }
+
 	/**
 	 * Declares class-based actions.
 	 */
@@ -57,8 +68,21 @@ class SiteController extends Controller
     }
 
     public function actionRight(){
+
+        $companyNumber = Company::model()->count('is_valid=1');
+        $userNumber    = User::model()->count('is_valid=1');
+        $dataNumber = DataBasic::model()->count() + DataExtension::model()->count();
+        $loginTime = isset(Yii::app()->user->loginTime)? Yii::app()->user->loginTime :null;
+
+        $renderArray   = array(
+            'companyNumber'=>$companyNumber,
+            'userNumber'=>$userNumber,
+            'dataNumber'=>$dataNumber,
+            'loginTime' =>$loginTime
+        );
+
         $this->layout = "login";
-        $this->render('right');
+        $this->render('right',$renderArray);
     }
 
 	/**

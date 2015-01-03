@@ -14,18 +14,22 @@ class LoginController extends Controller {
      */
     function actionIndex(){
         //echo time();
-        $model = new LoginForm();
 
+
+        if(!Yii::app()->user->isGuest){
+            $this->doRedirect();
+        }
+        $model = new LoginForm();
         // collect user input data
         if(isset($_POST['LoginForm']))
         {
             $model->attributes=$_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
-            if($model->validate() && $model->login())
-                $this->redirect('/site/index');
-               // $this->redirect(Yii::app()->user->returnUrl);
+            if($model->validate() && $model->login()){
+                $this->doRedirect();
+            }
+            // $this->redirect(Yii::app()->user->returnUrl);
         }
-
 
         $this->render('index',array('model'=>$model));
     }
@@ -40,4 +44,9 @@ class LoginController extends Controller {
      */
     function actionLogout(){}
 
+    function doRedirect(){
+        $this->_user = $this->getUserInfo();
+        $url = $this->_user['role']==1 ? '/site/index':'member/tpl';
+        $this->redirect($url);
+    }
 } 

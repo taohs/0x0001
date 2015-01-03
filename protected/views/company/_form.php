@@ -4,8 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
     <?php $form=$this->beginWidget('CActiveForm', array(
         'id'=>'company-update-form',
         // Please note: When you enable ajax validation, make sure the corresponding
@@ -15,52 +13,60 @@
         'enableAjaxValidation'=>false,
         'enableClientValidation'=>true,
     )); ?>
+    <div class="addlist">
 
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
+        <p class="note">带 <span class="required">*</span> 为必填项。</p>
 
-    <?php echo $form->errorSummary($model); ?>
+        <?php echo $form->errorSummary($model); ?>
 
-    <div class="row">
-        <?php echo $form->labelEx($model,'id'); ?>
-        <?php echo $form->textField($model,'id'); ?>
-        <?php echo $form->error($model,'id'); ?>
+
+
+        <div class="row clear">
+            <ul class="clear">
+                <li class="a1"><span>※</span><b>是否启用</b></li>
+                <li class="a2">
+                    <span class="selectBox">
+                    <?php echo $form->dropDownList($model,'is_valid',array('0'=>'不启用','1'=>'启用'),array('class'=>'select')); ?>
+                    <?php echo $form->error($model,'is_valid'); ?>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row clear">
+            <ul class="clear">
+            <li class="a1"><span>※</span><b>企业编号</b></li>
+            <li class="a2">
+                <?php echo $form->textField($model,'code_id',array('class'=>'text','style'=>'width:150px')); ?>
+                <?php echo $form->error($model,'code_id'); ?>
+            </li>
+                </ul>
+        </div>
+
+        <div class="row clear">
+            <ul class="clear">
+                <li class="a1"><span>※</span><b>企业名称</b></li>
+                <li class="a2">
+                    <?php echo $form->textField($model,'company',array('class'=>'text','style'=>'width:150px')); ?>
+                    <?php echo $form->error($model,'company'); ?>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="row clear buttons">
+            <ul class="clear">
+                <li class="a1"></li>
+                <li class="a2">
+                    <?php if(Yii::app()->user->hasFlash('companySubmitted')): ?>
+                        <div class="flash-success">
+                            <?php echo Yii::app()->user->getFlash('companySubmitted'); ?>
+                        </div>
+                    <?php endif;?>
+                    <?php echo CHtml::submitButton('Submit',array('class'=>'sbut','value'=>'提 交')); ?></li>
+        </div>
+
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'is_valid'); ?>
-        <?php echo $form->textField($model,'is_valid'); ?>
-        <?php echo $form->error($model,'is_valid'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'code_id'); ?>
-        <?php echo $form->textField($model,'code_id'); ?>
-        <?php echo $form->error($model,'code_id'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'company'); ?>
-        <?php echo $form->textField($model,'company'); ?>
-        <?php echo $form->error($model,'company'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'create_time'); ?>
-        <?php echo $form->textField($model,'create_time'); ?>
-        <?php echo $form->error($model,'create_time'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'update_time'); ?>
-        <?php echo $form->textField($model,'update_time'); ?>
-        <?php echo $form->error($model,'update_time'); ?>
-    </div>
-
-
-    <div class="row buttons">
-        <?php echo CHtml::submitButton('Submit'); ?>
-    </div>
-
     <?php $this->endWidget(); ?>
 
-</div><!-- form -->
+<!-- form -->

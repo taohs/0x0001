@@ -5,9 +5,9 @@
                 <li class="a1" style="width: 50px;">年度：</li>
                 <li class="a2">
                     <?php
-                    $form= $this->beginWidget('CActiveForm',array(
+                        $form= $this->beginWidget('CActiveForm',array(
 
-                    ));
+                        ));
                     ?>
 
                     <span class="selectBox" style="float: left">
@@ -23,7 +23,7 @@
                 </li>
             </ul>
         </div>
-        <table class="list">
+        <table class="list" style="margin-top: 5px;">
             <thead>
             <tr>
                 <th>挂帐期间</th>
@@ -44,10 +44,13 @@
         </table>
     </div>
 </div>
+<?php Yii::app()->clientScript->registerCoreScript('jquery');?>
 <script type="text/javascript">
     $("#search").click(function(){
+        //alert(1);
         var url=window.location.href;
         url=url + '&year='+$("#year").val();
+        alert(url);
         window.open(url.'_self');
     });
 </script>

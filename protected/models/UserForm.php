@@ -17,15 +17,16 @@
  * @property Role $role0
  * @property Company $company0
  */
-class User extends CActiveRecord
+class UserForm extends CFormModel
 {
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'tb_back_user';
-	}
+    public $id;
+	public $username;
+    public $password;
+    public $create_time;
+    public $update_time;
+    public $is_valid;
+    public $company;
+    public $role;
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -35,16 +36,10 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username,is_valid,company,role,id', 'required','on'=>'update'),
-			array('password,id', 'required','on'=>'updatePassword'),
             array('username,password,is_valid,company,role', 'required','on'=>'create'),
-            array('id, is_valid, company, role', 'numerical', 'integerOnly'=>true),
+            array('username,password,is_valid,company,role,id', 'required','on'=>'update'),
+			array('id, is_valid, company, role', 'numerical', 'integerOnly'=>true),
 			array('username, password', 'length', 'max'=>255),
-			array('create_time, update_time', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, create_time, update_time, is_valid, company, role', 'safe', 'on'=>'search'),
-            array('id,username','unique','className'=>'User')
 		);
 	}
 
@@ -121,29 +116,19 @@ class User extends CActiveRecord
 		return parent::model($className);
 	}
 
-    public static function getModelByPk($id,$cacheExpire = 3600){
-        $cacheKey = self::getCacheKey($id);
+    public static function getModelByPk($id){
+        $cacheKey = 'UserModel_'.$id;
         $cacheValue = Yii::app()->cache->get($cacheKey);
+        $cacheExpire = 3600;
         if(!$cacheValue){
-            $cacheValue = self::setModelByPk($id,$cacheExpire);
+            $cacheValue = self::model()->findByPk($id);
+            if($cacheValue){
+                Yii::app()->cache->set($cacheKey,$cacheValue,$cacheExpire);
+            }else{
+                throw Exception("model is null");
+            }
         }
         return $cacheValue;
-    }
-
-    public static function setModelByPk($id,$cacheExpire = 3600,User $user=null){
-        $cacheKey = self::getCacheKey($id);
-        $cacheValue = self::model()->findByPk($id);
-        if($cacheValue){
-            Yii::app()->cache->set($cacheKey,$cacheValue,$cacheExpire);
-        }else{
-            throw Exception("model is null");
-        }
-        return $cacheValue;//Yii::app()->cache->set($cacheKey,$cacheValue,$cacheExpire);
-    }
-
-    public static function getCacheKey($id){
-        return $cacheKey = 'UserModel_'.$id;
-
     }
 
     function beforeSave(){
@@ -154,8 +139,9 @@ class User extends CActiveRecord
         $this->update_time=$current;
         return true;
     }
-
-    function onAfterSave(){
-        echo time();
+    function save(){
+        $user= new User();
+        $user->attributes = $this->unsetAttributes();
+      //  return $user->save();
     }
 }

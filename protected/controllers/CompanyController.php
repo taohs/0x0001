@@ -14,6 +14,17 @@ class CompanyController extends Controller {
 
     public $breadcrumbs = array('公司管理1'=>array('/site/index','id'=>1));
 
+    protected  $_user;
+
+    function init(){
+        parent::init();
+        if(Yii::app()->user->isGuest){
+            $this->redirect('/login');
+        }elseif(Yii::app()->user->role!=1){
+            $this->redirect('/member');
+        }
+        $this->_user = $this->getUserInfo();
+    }
 
     public function actionIndex(){
         echo time();
@@ -64,13 +75,43 @@ class CompanyController extends Controller {
         if(isset($_POST['Company']))
         {
             $model->attributes=$_POST['Company'];
-            if($model->validate())
+            if($model->validate()&&$model->save())
             {
+                Yii::app()->user->setFlash("companySubmitted",'修改企业成功!');
                 // form inputs are valid, do something here
-                return;
+                //return;
+            }else{
+                Yii::app()->user->setFlash("companySubmitted",'修改企业失败!'.print_r($model->getErrors(),true));
             }
+            $this->refresh();
         }
         $this->render('update',array('model'=>$model));
+    }
+    public function actionCreate(){
+
+        $model = new Company();
+        // uncomment the following code to enable ajax-based validation
+        /*
+        if(isset($_POST['ajax']) && $_POST['ajax']==='company-update-form')
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+        */
+        if(isset($_POST['Company']))
+        {
+            $model->attributes=$_POST['Company'];
+            if($model->validate()&&$model->save())
+            {
+                Yii::app()->user->setFlash("companySubmitted",'新增企业成功!');
+                // form inputs are valid, do something here
+                //return;
+            }else{
+                Yii::app()->user->setFlash("companySubmitted",'新增企业失败!'.var_dump($model->getErrors()));
+            }
+            $this->refresh();
+        }
+        $this->render('create',array('model'=>$model));
     }
     public function actionDelete(){}
 
@@ -79,4 +120,5 @@ class CompanyController extends Controller {
        // echo "<a href='http://www.baidu.com/'>$data->id,$row</a>";
         echo CHtml::link("查看",array("/data/company","company_code"=>$data->code_id));
     }
+
 } 

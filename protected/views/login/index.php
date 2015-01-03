@@ -27,7 +27,7 @@
                 <?php echo $form->error($model,'username',array(),false,false); ?>
                 </li>
             <li id="login-pwd"><label>密  码：</label>
-                <?php echo $form->textField($model,'password',array('class'=>'password','tabindex'=>'2')); ?>
+                <?php echo $form->passwordField($model,'password',array('class'=>'password','tabindex'=>'2')); ?>
                 <?php echo $form->error($model,'password',array('style'=>'color:red')); ?>
             </li>
             <li>

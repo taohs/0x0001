@@ -33,12 +33,13 @@ class UserIdentity extends CUserIdentity
             $this->setState('role',$user->role);
             $this->setState('roleId',$this->_roleId);
             $this->setState('roleName',$user->role0->role_name);
+            $this->setState('loginTime',date('Y-m-d H:i:s'));
         }
 		return !$this->errorCode;
 	}
 
     function encodePassword(){
-        return $this->password;//md5($this->password);
+        return md5($this->password);//md5($this->password);
     }
 
     function getId(){

@@ -12,6 +12,15 @@ class DataController extends Controller{
 
     public $controlName="挂帐单管理";
 
+    function init(){
+        parent::init();
+        if(Yii::app()->user->isGuest){
+            $this->redirect('/login');
+        }elseif(Yii::app()->user->role!=1){
+            $this->redirect('/member');
+        }
+        $this->_user = $this->getUserInfo();
+    }
     /**
      * 显示公司全年月份表
      */
@@ -19,11 +28,15 @@ class DataController extends Controller{
         //echo time();
       //  die();
         $companyCode = YiiBase::app()->request->getParam('company_code');
-        $searchYear  = YiiBase::app()->request->getParam('year');
-        if(!$searchYear){
-            $searchYear = date('Y',time());
-        }
 
+        $model = new YearForm();
+        if(isset($_POST['YearForm'])){
+            $model->attributes = $_POST['YearForm'];
+        }
+        $searchYear  = $model->year;
+        if(!$searchYear){
+            $searchYear = $model->year = date('Y',time());
+        }
 
         $criteria = new CDbCriteria();
         $criteria->addCondition('`code_id`=:companyCode');
@@ -36,15 +49,20 @@ class DataController extends Controller{
 
         $monthArray = array();
         for($monthStart = $searchYear.'01',$monthEnd = $searchYear.'12'; $monthStart<=$monthEnd; $monthStart++){
-            $varData = Data::model()->find('company_code=:company_code and month=:month',array(':company_code'=>$companyCode,':month'=>$monthStart));
-            if(!$varData){
-                $monthArray[$monthStart] = array('basic'=>'未挂帐','extension'=>'未挂帐');
-            }else{
-                $monthArray[$monthStart] = array(
-                    'basic'=>CHtml::link("查看",array("/data/basic","company_code"=>$companyInfo->code_id,"month"=>$monthStart)),
-                    'extension'=>CHtml::link("查看",array("/data/extension","company_code"=>$companyInfo->code_id,"month"=>$monthStart)),
-                );
-            }
+            $dataBasic = DataBasic::model()->find('company_code=:company_code and month=:month',array(':company_code'=>$companyCode,':month'=>$monthStart));
+            $dataExtension = DataExtension::model()->find('company_code=:company_code and month=:month',array(':company_code'=>$companyCode,':month'=>$monthStart));
+
+            $basic = $dataBasic ? CHtml::link("查看",array("/data/basic","company_code"=>$companyInfo->code_id,"month"=>$monthStart)) : '未挂帐';
+            $extension = $dataExtension ? CHtml::link("查看",array("/data/extension","company_code"=>$companyInfo->code_id,"month"=>$monthStart)) : '未挂帐';
+            $monthArray[$monthStart] =  array('basic'=>$basic,'extension'=>$extension);
+            //if(!$dataBasic&&!$dataExtension){
+            //    $monthArray[$monthStart] = array('basic'=>'未挂帐','extension'=>'未挂帐');
+            //}else{
+            //    $monthArray[$monthStart] = array(
+            //        'basic'=>CHtml::link("查看",array("/data/basic","company_code"=>$companyInfo->code_id,"month"=>$monthStart)),
+            //        'extension'=>CHtml::link("查看",array("/data/extension","company_code"=>$companyInfo->code_id,"month"=>$monthStart)),
+            //    );
+            //}
         }
 
         //YiiBase::app()->get
@@ -52,7 +70,8 @@ class DataController extends Controller{
         $renderData = array(
             'companyInfo'=>$companyInfo,
             'year'=>$searchYear,
-            'monthArray'=>$monthArray
+            'monthArray'=>$monthArray,
+            'model'=>$model
         );
         $this->render('company',$renderData);
     }
@@ -61,23 +80,17 @@ class DataController extends Controller{
         $companyCode = YiiBase::app()->request->getParam('company_code');
         $month       = YiiBase::app()->request->getParam('month');
 
-        $criteria = new CDbCriteria();
-      //  $varData = Data::model()->findAll('company_code=:company_code and month=:month',array(':company_code'=>$companyCode,':month'=>$month));
+
+        $dataDebts = new DataDebts();
+        $data = $dataDebts->getBasicData($companyCode,$month);
 
         $companyInfo = Company::model()->find('code_id=:companyCode',array(':companyCode'=>$companyCode));
-
-        $criteria->addCondition('company_code=:company_code and month=:month');
-        $criteria->params=array(':company_code'=>$companyCode,':month'=>$month);
-        $dataProvider = new CActiveDataProvider('Data',array(
-            'criteria'=>$criteria,
-            'pagination'=>array('pageSize'=>15),
-            'sort'=>array('defaultOrder'=>'id desc')
-        ));
         $this->actionName= $companyInfo->company . $month ."基础挂账单";
         $renderData = array(
         //    'debtsData'=>$varData,
             'company'=>$companyInfo,
-            'dataProvider'=>$dataProvider
+            'dataProvider'=>$data['dataProvider'],
+            'total'=>$data['total']
         );
         $this->render('basic',$renderData);
     }
@@ -85,23 +98,19 @@ class DataController extends Controller{
         $companyCode = YiiBase::app()->request->getParam('company_code');
         $month       = YiiBase::app()->request->getParam('month');
 
-        $criteria = new CDbCriteria();
-        //  $varData = Data::model()->findAll('company_code=:company_code and month=:month',array(':company_code'=>$companyCode,':month'=>$month));
+
+
+        $dataDebts = new DataDebts();
+        $data = $dataDebts->getExtensionData($companyCode,$month);
+
 
         $companyInfo = Company::model()->find('code_id=:companyCode',array(':companyCode'=>$companyCode));
-
-        $criteria->addCondition('company_code=:company_code and month=:month');
-        $criteria->params=array(':company_code'=>$companyCode,':month'=>$month);
-        $dataProvider = new CActiveDataProvider('Data',array(
-            'criteria'=>$criteria,
-            'pagination'=>array('pageSize'=>10),
-            'sort'=>array('defaultOrder'=>'id desc')
-        ));
         $this->actionName= $companyInfo->company . $month ."拓展挂账单";
         $renderData = array(
             //    'debtsData'=>$varData,
+            'total'=>$data['total'],
             'company'=>$companyInfo,
-            'dataProvider'=>$dataProvider
+            'dataProvider'=>$data['dataProvider']
         );
         $this->render('extension',$renderData);
     }

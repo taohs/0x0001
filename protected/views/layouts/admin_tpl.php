@@ -5,10 +5,10 @@
     <title>Admin</title>
 </head>
 <frameset rows="98,*" cols="*" frameborder="no" border="0" framespacing="0">
-    <frame src="/site/top" name="topFrame" scrolling="No" noresize="noresize" />
+    <frame src="top.html" name="topFrame" scrolling="No" noresize="noresize" />
     <frameset cols="188,*" frameborder="no" border="0" framespacing="0">
-        <frame src="/site/left.html" name="leftFrame" scrolling="No" noresize="noresize" />
-        <frame src="/site/right.html" name="rightFrame" />
+        <frame src="left.html" name="leftFrame" scrolling="No" noresize="noresize" />
+        <frame src="right.html" name="rightFrame" />
     </frameset>
 </frameset>
 <noframes><body></body></noframes>
