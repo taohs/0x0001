@@ -91,7 +91,7 @@ class DataExtension extends CActiveRecord
 			'unpaid_debts_amount' => '挂账金额',
 			'current_unpaid_debts_amount' => '本期挂账金额',
 			'month' => '会计期间',
-			'no_unpaid_debts' => '未挂账数量',
+			'no_unpaid_debts' => '本期未挂账数量',
 			'open_balance_payable' => '期初应付账款余额',
 			'retention_money' => '质保金',
 			'deduction' => '扣点',
