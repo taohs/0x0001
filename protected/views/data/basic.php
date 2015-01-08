@@ -51,7 +51,7 @@
                 array('name'=>'本期收入数量','value'=>'$data->current_number'),
                 array('name'=>'本期挂帐数量','value'=>'$data->current_unpaid_debts'),
                 array('name'=>'单价','value'=>'$data->price'),
-                array('name'=>'去税金额', 'value'=>'$data->tax'),
+                array('name'=>'去税金额', 'value'=>'$data->after_tax'),
                 array('name'=>'税额', 'value'=>'$data->tax'),
                 array('name'=>'挂帐金额', 'value'=>'$data->unpaid_debts_amount'),
 
