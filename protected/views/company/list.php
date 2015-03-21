@@ -1,3 +1,12 @@
+<?php
+/**
+ *
+ * @var YiiBase Yii
+ * @var $dataProvider CDataProvider
+ *
+ * @var $keyword String
+ */
+?>
 <div class="right">
     <div class="tool">
         <div id="search" class="search">
