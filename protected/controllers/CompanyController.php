@@ -37,20 +37,13 @@ class CompanyController extends Controller {
 
 
         $keyword = YiiBase::app()->request->getParam('keyword');
-//        echo $keyword;
-        $this->actionName = "公司列表";
-
         $criteria = new CDbCriteria();
         $criteria->addSearchCondition('company',$keyword);
         $criteria->addSearchCondition('id',$keyword,true,'or');
-//        $criteria->addColumnCondition(array('company','id'),'or','like');
+
 
         $dataProvider = new CActiveDataProvider('Company',array(
             'criteria'=>$criteria,
-//            'countCriteria'=>array(
-//                //'condition'=>'status=1',
-//                // 'order' and 'with' clauses have no meaning for the count query
-//            ),
             'pagination'=>array(
                 'pageSize'=>20,
             ),
@@ -67,6 +60,7 @@ class CompanyController extends Controller {
             'actionName'=>'1',
             'keyword'=>$keyword
         );
+        $this->actionName = "公司列表";
         $this->layout = 'admin_tpl_right';
         $this->render('list',$renderData);
     }
