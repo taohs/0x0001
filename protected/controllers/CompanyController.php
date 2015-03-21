@@ -34,15 +34,23 @@ class CompanyController extends Controller {
         $this->render('left');
     }
     public function actionList(){
+
+
+        $keyword = YiiBase::app()->request->getParam('keyword');
+//        echo $keyword;
         $this->actionName = "公司列表";
+
+        $criteria = new CDbCriteria();
+        $criteria->addSearchCondition('company',$keyword);
+        $criteria->addSearchCondition('id',$keyword,true,'or');
+//        $criteria->addColumnCondition(array('company','id'),'or','like');
+
         $dataProvider = new CActiveDataProvider('Company',array(
-            'criteria'=>array(
-             //   'with'=>array('role0','company0')
-            ),
-            'countCriteria'=>array(
-                //'condition'=>'status=1',
-                // 'order' and 'with' clauses have no meaning for the count query
-            ),
+            'criteria'=>$criteria,
+//            'countCriteria'=>array(
+//                //'condition'=>'status=1',
+//                // 'order' and 'with' clauses have no meaning for the count query
+//            ),
             'pagination'=>array(
                 'pageSize'=>20,
             ),
@@ -56,7 +64,9 @@ class CompanyController extends Controller {
             'dataProvider'=>$dataProvider,
             'breadcrumbs'=>array('index'=>array('/site/index','id'=>1)),
             'controlName'=>'123',
-            'actionName'=>'1');
+            'actionName'=>'1',
+            'keyword'=>$keyword
+        );
         $this->layout = 'admin_tpl_right';
         $this->render('list',$renderData);
     }
