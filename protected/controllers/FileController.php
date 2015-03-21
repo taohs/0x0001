@@ -379,6 +379,17 @@ class FileController extends Controller{
         $month =  $model->year . $model->month;
         return DataExtension::model()->deleteAll('month=:month',array(':month'=>$month));
     }
+    function delCompanyBasicData(MonthForm $model){
+        $month =  $model->year . $model->month;
+        //var_dump($month);
+        return DataBasic::model()->deleteAll('month=:month and company_code=:company_code',array(':month'=>$month,':company_code'=>$model->company));
+    }
+    function delCompanyExtensionData(MonthForm $model){
+        //if(!$model instanceof MonthForm)
+        $month =  $model->year . $model->month;
+        return DataExtension::model()->deleteAll('month=:month and company_code=:company_code',array(':month'=>$month,':company_code'=>$model->company));
+    }
+
 
     /**
      * 删除某月基础挂帐单
@@ -422,5 +433,49 @@ class FileController extends Controller{
         $this->layout = "admin_tpl_right";
         $this->actionName = "删除附加挂帐单";
         $this->render('del_basic',array('model'=>$model));
+    }
+
+    /**
+     * 删除某月基础挂帐单
+     */
+    function actionDeleteCompanyBasic(){
+        $model = new MonthForm('company');
+        if(isset($_POST['MonthForm'])){
+            $model->attributes = $_POST['MonthForm'];
+            if($model->month<10)
+                $model->month ='0'.$model->month;
+            if($model->validate()&&$this->delCompanyBasicData($model)){
+                $msg = "删除成功";
+            }else{
+                $msg = "删除失败";
+            }
+            Yii::app()->user->setFlash("delBasicSubmit",$msg);
+            // $this->refresh();
+        }
+        $this->layout = "admin_tpl_right";
+        $this->actionName = "删除基础挂帐单";
+        $this->render('del_company_basic',array('model'=>$model));
+    }
+
+    /**
+     * 删除某月附加挂帐单
+     */
+    function actionDeleteCompanyExtension(){
+        $model = new MonthForm('company');
+        if(isset($_POST['MonthForm'])){
+            $model->attributes = $_POST['MonthForm'];
+            if($model->month<10)
+                $model->month ='0'.$model->month;
+            if($model->validate()&&$this->delCompanyExtensionData($model)){
+                $msg = "删除成功";
+            }else{
+                $msg = "删除失败";
+            }
+            Yii::app()->user->setFlash("delBasicSubmit",$msg);
+            // $this->refresh();
+        }
+        $this->layout = "admin_tpl_right";
+        $this->actionName = "删除附加挂帐单";
+        $this->render('del_company_basic',array('model'=>$model));
     }
 }
