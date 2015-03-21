@@ -18,10 +18,17 @@ class TestController extends Controller {
     }
 
 
+
     function actionIndex(){
-        echo time();
-        echo '<br>';
-        echo $this->getPrice('IBM');
+
+        $content = Yii::app()->request->getParam('content');
+
+        if(strlen($content)==5){
+            $tempContentPre = substr($content,0,4);
+            $tempContentPost = '0' . substr($content,4,1);
+            $content = $tempContentPre . $tempContentPost;
+        }
+        echo $content;
     }
 
 

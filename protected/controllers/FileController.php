@@ -191,6 +191,12 @@ class FileController extends Controller{
         $this->render('upload',$renderData);
     }
 
+    /**
+     * @param               $filePath
+     * @param CActiveRecord $activeRecord
+     * @return bool
+     * @throws CDbException
+     */
     function readAndInsertDatabase($filePath,CActiveRecord $activeRecord){
         $file = fopen($filePath,'r');
         $i=0;
@@ -227,6 +233,11 @@ class FileController extends Controller{
                         }else{
                             if($m==0){
                                 $content = str_replace(array('年','期'),array('',''),mb_convert_encoding(trim($data[$m]),'utf8',$encode));
+                                if(strlen($content)==5){
+                                    $tempContentPre = substr($content,0,4);
+                                    $tempContentPost = '0' . substr($content,4,1);
+                                    $content = $tempContentPre . $tempContentPost;
+                                }
                             }else{
                                 $content = mb_convert_encoding(trim($data[$m]),'utf8',$encode);
                                 $content = $content!='' ? $content :null;
