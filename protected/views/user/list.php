@@ -4,7 +4,6 @@
             <form action="/user/list" method="get">
                 <input id="keyword" name="keyword" type="text" value="<?php echo $keyword; ?>" placeholder="输入ID或用户名查询">
                 <span id="searchSubmit"><img src="/images/toolbar_9.png">搜索</span>
-                <input type="submit" style="display: none;">
             </form>
         </div>
         <script type="text/javascript">
