@@ -1,7 +1,7 @@
 <div class="right">
     <div class="tool">
         <div id="search" class="search">
-            <form action="/company/list" method="get">
+            <form action="<?php echo YiiBase::app()->createUrl('/company/list');?>" method="get">
                 <input id="keyword" name="keyword" type="text" value="<?php echo $keyword; ?>" placeholder="输入ID或名称查询">
                 <span id="searchSubmit"><img src="/images/toolbar_9.png">搜索</span>
             </form>
