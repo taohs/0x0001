@@ -48,6 +48,7 @@ class DataDebts {
             sum(no_unpaid_debts) as no_unpaid_debts,
             sum(close_amount) as close_amount,
             sum(unpaid_debts_amount) as unpaid_debts_amount,
+            sum(last_number) as last_number,
 
             max(open_balance_payable) as open_balance_payable,
             max(retention_money) as retention_money,

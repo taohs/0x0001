@@ -1,3 +1,10 @@
+<style type="text/css">
+    strong {
+        font-weight: bolder;
+        color: red;
+        font-size: 14px;
+    }
+</style>
 <div class="right">
     <div class="body" style="margin-top: 0px;">
 
@@ -34,34 +41,17 @@
             <table class="list">
                 <thead>
                 <tr>
-                    <th>本期收入数量</th>
-                    <th>本期挂帐数量</th>
-                    <th>挂帐金额</th>
-                    <th>本期未挂帐数</th>
-                    <th>期末结存金额</th>
+<!--                    <th>本期收入数量</th>-->
+<!--                    <th>本期挂帐数量</th>-->
+<!--                    <th>挂帐金额</th>-->
+<!--                    <th>本期未挂帐数</th>-->
+<!--                    <th>期末结存金额</th>-->
                     <th>期初应付账款余额</th>
                     <th>本期应付账款余额</th>
 
                     <th>扣点</th>
-                </tr>
-                </thead>
-                <tboty>
-                    <tr>
-                        <td><?php echo $total->current_number; ?></td>
-                        <td><?php echo $total->current_unpaid_debts; ?></td>
-                        <td><?php echo $total->unpaid_debts_amount; ?></td>
-                        <td><?php echo $total->no_unpaid_debts; ?></td>
-                        <td><?php echo $total->close_amount; ?></td>
-                        <td><?php echo $total->open_balance_payable; ?></td>
-                        <td><?php echo $total->current_balance_payable; ?></td>
-                        <td><?php echo $total->deduction; ?></td>
-                    </tr>
-                </tboty>
-            </table>
 
-            <table class="list">
-                <thead>
-                <tr>
+
                     <th>罚款</th>
                     <th>搬运费</th>
                     <th>查询费</th>
@@ -70,11 +60,21 @@
                     <th>本期卡付金额</th>
                     <th>其中承兑额</th>
                     <th>质保金</th>
-
                 </tr>
                 </thead>
                 <tboty>
                     <tr>
+<!--                        <td>--><?php //echo $total->current_number; ?><!--</td>-->
+<!--                        <td>--><?php //echo $total->current_unpaid_debts; ?><!--</td>-->
+<!--                        <td>--><?php //echo $total->unpaid_debts_amount; ?><!--</td>-->
+<!--                        <td>--><?php //echo $total->no_unpaid_debts; ?><!--</td>-->
+<!--                        <td>--><?php //echo $total->close_amount; ?><!--</td>-->
+                        <td><?php echo $total->open_balance_payable; ?></td>
+                        <td><?php echo $total->current_balance_payable; ?></td>
+                        <td><?php echo $total->deduction; ?></td>
+
+
+
                         <td><?php echo $total->fine; ?></td>
                         <td><?php echo number_format( $total->transportation_fee, 2, ".", "" ); ?></td>
                         <td><?php echo number_format( $total->check_fee, 2, ".", "" ); ?></td>
@@ -87,16 +87,52 @@
                 </tboty>
             </table>
 
+<!--            <table class="list">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>罚款</th>-->
+<!--                    <th>搬运费</th>-->
+<!--                    <th>查询费</th>-->
+<!--                    <th>其他</th>-->
+<!--                    <th>本期网付金额</th>-->
+<!--                    <th>本期卡付金额</th>-->
+<!--                    <th>其中承兑额</th>-->
+<!--                    <th>质保金</th>-->
+<!---->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tboty>-->
+<!--                    <tr>-->
+<!--                        <td>--><?php //echo $total->fine; ?><!--</td>-->
+<!--                        <td>--><?php //echo number_format( $total->transportation_fee, 2, ".", "" ); ?><!--</td>-->
+<!--                        <td>--><?php //echo number_format( $total->check_fee, 2, ".", "" ); ?><!--</td>-->
+<!--                        <td>--><?php //echo number_format( $total->other_fee, 2, ".", "" ); ?><!--</td>-->
+<!--                        <td>--><?php //echo number_format( $total->current_net_amount_paid, 2, ".", "" ); ?><!--</td>-->
+<!--                        <td>--><?php //echo number_format( $total->current_card_amount_paid, 2, ".", "" ); ?><!--</td>-->
+<!--                        <td>--><?php //echo number_format( $total->acceptances_amount, 2, ".", "" ); ?><!--</td>-->
+<!--                        <td>--><?php //echo number_format( $total->retention_money, 2, ".", "" ); ?><!--</td>-->
+<!--                    </tr>-->
+<!--                </tboty>-->
+<!--            </table>-->
+
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    $("#search").click(function () {
-        var url = window.location.href;
-        url = url + '&year=' + $("#year").val();
-        window.open(url.
-        '_self'
-        )
-        ;
-    });
+
+    var tr = '<tr>' +
+        '<td><strong>合计</strong></td>' +
+        '<td></td>' +
+        '<td></td>' +
+        '<td></td>' +
+        '<td><strong><?php echo $total->last_number; ?></strong></td>' +
+        '<td><strong><?php echo $total->current_number; ?></strong> </td>' +
+        '<td><strong><?php echo $total->current_unpaid_debts;?></strong></td>' +
+        '<td></td>' +
+        '<td><strong><?php echo $total->unpaid_debts_amount; ?></strong></td>' +
+        '<td><strong><?php echo $total->no_unpaid_debts; ?></strong></td>' +
+        '<td><strong><?php echo $total->close_amount; ?></strong></td>' +
+        '</tr>';
+    $('#yw0 tbody').append(tr);
+    //    alert($('#yw0').html());
 </script>

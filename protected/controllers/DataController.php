@@ -98,8 +98,6 @@ class DataController extends Controller{
         $companyCode = YiiBase::app()->request->getParam('company_code');
         $month       = YiiBase::app()->request->getParam('month');
 
-
-
         $dataDebts = new DataDebts();
         $data = $dataDebts->getExtensionData($companyCode,$month);
 
