@@ -39,7 +39,7 @@ class CompanyController extends Controller {
         $keyword = YiiBase::app()->request->getParam('keyword');
         $criteria = new CDbCriteria();
         $criteria->addSearchCondition('company',$keyword);
-        $criteria->addSearchCondition('id',$keyword,true,'or');
+        $criteria->addSearchCondition('code_id',$keyword,true,'or');
 
 
         $dataProvider = new CActiveDataProvider('Company',array(

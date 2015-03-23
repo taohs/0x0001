@@ -47,10 +47,10 @@
 
         <div class="row clear">
             <ul class="clear">
-                <li class="a1"><span>*</span><b>公司名称</b></li>
+                <li class="a1"><span>*</span><b>公司编号</b></li>
                 <li class="a2">
                      <span class="selectBox">
-                        <?php echo $form->dropDownList($model,'company',CHtml::listData(Company::model()->findall('is_valid=1'),'id','company'),array('class'=>'select')); ?>
+                        <?php echo $form->dropDownList($model,'company',CHtml::listData(Company::model()->findall('is_valid=1'),'id','code_id'),array('class'=>'select')); ?>
                         <?php echo $form->error($model,'company'); ?>
                     </span>
                 </li>

@@ -39,7 +39,7 @@
             <table class="list">
                 <thead>
                 <tr>
-                    <th>合计</th>
+
 <!--                    <th>本期收入数量</th>-->
 <!--                    <th>本期挂帐数量</th>-->
 <!--                    <th>去税金额</th>-->
@@ -55,7 +55,7 @@
                 </thead>
                 <tboty>
                     <tr>
-                        <td></td>
+
 <!--                        <td>--><?php //echo $total->current_number; ?><!--</td>-->
 <!--                        <td>--><?php //echo $total->current_unpaid_debts; ?><!--</td>-->
 <!--                        <td>--><?php //echo $total->after_tax; ?><!--</td>-->
@@ -67,7 +67,10 @@
                         <td><?php echo $total->acceptances_amount; ?></td>
                         <td><?php echo $total->current_balance_payable; ?></td>
                     </tr>
-
+                    <tr>
+                        <td><strong>备注</strong></td>
+                        <td colspan="3"><?php echo $total->remark;?></td>
+                    </tr>
                 </tboty>
             </table>
 
@@ -92,3 +95,5 @@
     $('#yw0 tbody').append(tr);
 //    alert($('#yw0').html());
 </script>
+<br>
+<br>

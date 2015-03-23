@@ -49,7 +49,7 @@
                     <li class="a1"><span>*</span><b>公司</b></li>
                     <li class="a2">
                     <span class="selectBox">
-                        <?php echo $form->dropDownList($model,'company',CHtml::listData(Company::model()->findAll(array('select'=>'code_id,company')),'code_id','company') ,array('class'=>'select')); ?>
+                        <?php echo $form->dropDownList($model,'company',CHtml::listData(Company::model()->findAll(array('select'=>'code_id,code_id')),'code_id','code_id') ,array('class'=>'select')); ?>
                         <?php echo $form->error($model,'company'); ?>
                     </span>
                     </li>

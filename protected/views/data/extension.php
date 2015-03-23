@@ -47,7 +47,8 @@
 <!--                    <th>本期未挂帐数</th>-->
 <!--                    <th>期末结存金额</th>-->
                     <th>期初应付账款余额</th>
-                    <th>本期应付账款余额</th>
+                    <th>本期挂帐金额</th>
+                    <th>质保金</th>
 
                     <th>扣点</th>
 
@@ -59,7 +60,7 @@
                     <th>本期网付金额</th>
                     <th>本期卡付金额</th>
                     <th>其中承兑额</th>
-                    <th>质保金</th>
+                    <th>本期应付账款余额</th>
                 </tr>
                 </thead>
                 <tboty>
@@ -70,7 +71,9 @@
 <!--                        <td>--><?php //echo $total->no_unpaid_debts; ?><!--</td>-->
 <!--                        <td>--><?php //echo $total->close_amount; ?><!--</td>-->
                         <td><?php echo $total->open_balance_payable; ?></td>
-                        <td><?php echo $total->current_balance_payable; ?></td>
+                        <td><?php echo $total->unpaid_debts_amount; ?></td>
+                        <td><?php echo number_format( $total->retention_money, 2, ".", "" ); ?></td>
+
                         <td><?php echo $total->deduction; ?></td>
 
 
@@ -82,7 +85,12 @@
                         <td><?php echo number_format( $total->current_net_amount_paid, 2, ".", "" ); ?></td>
                         <td><?php echo number_format( $total->current_card_amount_paid, 2, ".", "" ); ?></td>
                         <td><?php echo number_format( $total->acceptances_amount, 2, ".", "" ); ?></td>
-                        <td><?php echo number_format( $total->retention_money, 2, ".", "" ); ?></td>
+                        <td><?php echo $total->current_balance_payable; ?></td>
+
+                    </tr>
+                    <tr>
+                        <td><strong>备注</strong></td>
+                        <td colspan="11" align="left"><?php echo $total->remark;?></td>
                     </tr>
                 </tboty>
             </table>
@@ -136,3 +144,6 @@
     $('#yw0 tbody').append(tr);
     //    alert($('#yw0').html());
 </script>
+
+<br>
+<br>
